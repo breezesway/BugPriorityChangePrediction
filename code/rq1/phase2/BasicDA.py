@@ -17,6 +17,13 @@ columns_to_drop = ['key', 'curTime', 'Project', 'Rel_Labels',
                    'Rel_Attachments', 'Rep', 'Agn']
 df.drop(columns=columns_to_drop, axis=1, inplace=True)
 
+bug_fixing_features = ['Proj_Rep','Proj_Resolve'
+                       'Rep_PAve','Rep_PMed','Rep_Inc','Rep_Range',
+                       'Cmt_NumDiff','Cmt_PersNumDiff','Cmt_LenDiff',
+                       'His_NumDiff','His_PersNumDiff','His_FieldDiff'
+                       ]
+df.drop(columns=bug_fixing_features, axis=1, inplace=True)
+
 
 def custom_sampling(df):
     smote = SMOTE(sampling_strategy={1: int(len(df[df['curPriority'] == 'Minor']) * 1.65),

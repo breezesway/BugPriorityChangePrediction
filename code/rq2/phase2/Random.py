@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from imblearn.over_sampling import SMOTE
+from imblearn.over_sampling import RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
 from transformers import RobertaTokenizer, RobertaModel
 import torch
@@ -19,10 +19,10 @@ df.drop(columns=columns_to_drop, axis=1, inplace=True)
 
 
 def custom_sampling(df):
-    smote = SMOTE(sampling_strategy={1: int(len(df[df['curPriority'] == 'Minor']) * 1.65),
-                                     2: int(len(df[df['curPriority'] == 'Blocker']) * 1.15),
-                                     3: int(len(df[df['curPriority'] == 'Critical']) * 1.15),
-                                     4: int(len(df[df['curPriority'] == 'Trivial']) * 1.8)})
+    ros = RandomOverSampler(sampling_strategy={1: int(len(df[df['curPriority'] == 'Minor']) * 1.65),
+                                              2: int(len(df[df['curPriority'] == 'Blocker']) * 1.15),
+                                              3: int(len(df[df['curPriority'] == 'Critical']) * 1.15),
+                                              4: int(len(df[df['curPriority'] == 'Trivial']) * 1.8)})
     rus = RandomUnderSampler(sampling_strategy={5: int(len(df[df['curPriority'] == 'Major']) * 0.9)})
 
     df_minor = df[df['curPriority'] == 'Minor']
@@ -31,12 +31,12 @@ def custom_sampling(df):
     df_major = df[df['curPriority'] == 'Major']
     df_trivial = df[df['curPriority'] == 'Trivial']
 
-    X_minor, y_minor = smote.fit_resample(df_minor.drop('TargetPriority', axis=1), df_minor['TargetPriority'])
-    X_blocker, y_blocker = smote.fit_resample(df_blocker.drop('TargetPriority', axis=1), df_blocker['TargetPriority'])
-    X_critical, y_critical = smote.fit_resample(df_critical.drop('TargetPriority', axis=1),
-                                                df_critical['TargetPriority'])
+    X_minor, y_minor = ros.fit_resample(df_minor.drop('TargetPriority', axis=1), df_minor['TargetPriority'])
+    X_blocker, y_blocker = ros.fit_resample(df_blocker.drop('TargetPriority', axis=1), df_blocker['TargetPriority'])
+    X_critical, y_critical = ros.fit_resample(df_critical.drop('TargetPriority', axis=1),
+                                              df_critical['TargetPriority'])
     X_major, y_major = rus.fit_resample(df_major.drop('TargetPriority', axis=1), df_major['TargetPriority'])
-    X_trivial, y_trivial = smote.fit_resample(df_trivial.drop('TargetPriority', axis=1), df_trivial['TargetPriority'])
+    X_trivial, y_trivial = ros.fit_resample(df_trivial.drop('TargetPriority', axis=1), df_trivial['TargetPriority'])
 
     X_resampled = pd.concat([X_minor, X_blocker, X_critical, X_major, X_trivial])
     y_resampled = pd.concat([y_minor, y_blocker, y_critical, y_major, y_trivial])

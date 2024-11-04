@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from imblearn.over_sampling import SMOTE
-from imblearn.under_sampling import RandomUnderSampler
 from transformers import RobertaTokenizer, RobertaModel
 import torch
 from torch.utils.data import DataLoader, Dataset
@@ -17,37 +15,8 @@ columns_to_drop = ['key', 'curTime', 'Project', 'Rel_Labels',
                    'Rel_Attachments', 'Rep', 'Agn']
 df.drop(columns=columns_to_drop, axis=1, inplace=True)
 
-
-def custom_sampling(df):
-    smote = SMOTE(sampling_strategy={1: int(len(df[df['curPriority'] == 'Minor']) * 1.65),
-                                     2: int(len(df[df['curPriority'] == 'Blocker']) * 1.15),
-                                     3: int(len(df[df['curPriority'] == 'Critical']) * 1.15),
-                                     4: int(len(df[df['curPriority'] == 'Trivial']) * 1.8)})
-    rus = RandomUnderSampler(sampling_strategy={5: int(len(df[df['curPriority'] == 'Major']) * 0.9)})
-
-    df_minor = df[df['curPriority'] == 'Minor']
-    df_blocker = df[df['curPriority'] == 'Blocker']
-    df_critical = df[df['curPriority'] == 'Critical']
-    df_major = df[df['curPriority'] == 'Major']
-    df_trivial = df[df['curPriority'] == 'Trivial']
-
-    X_minor, y_minor = smote.fit_resample(df_minor.drop('TargetPriority', axis=1), df_minor['TargetPriority'])
-    X_blocker, y_blocker = smote.fit_resample(df_blocker.drop('TargetPriority', axis=1), df_blocker['TargetPriority'])
-    X_critical, y_critical = smote.fit_resample(df_critical.drop('TargetPriority', axis=1),
-                                                df_critical['TargetPriority'])
-    X_major, y_major = rus.fit_resample(df_major.drop('TargetPriority', axis=1), df_major['TargetPriority'])
-    X_trivial, y_trivial = smote.fit_resample(df_trivial.drop('TargetPriority', axis=1), df_trivial['TargetPriority'])
-
-    X_resampled = pd.concat([X_minor, X_blocker, X_critical, X_major, X_trivial])
-    y_resampled = pd.concat([y_minor, y_blocker, y_critical, y_major, y_trivial])
-
-    return X_resampled, y_resampled
-
-
-X_resampled, y_resampled = custom_sampling(df)
-
-class_weights = 1.0 / (y_resampled.value_counts(normalize=True) * len(y_resampled.unique()))
-class_weights = class_weights.sort_index().values
+X_resampled = df.drop(columns=['TargetPriority'])
+y_resampled = df['TargetPriority']
 
 tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 model = RobertaModel.from_pretrained('roberta-base')
@@ -109,7 +78,7 @@ class Net(nn.Module):
 
 input_dim = final_features.shape[1]
 net = Net(input_dim)
-criterion = nn.CrossEntropyLoss(weight=torch.tensor(class_weights, dtype=torch.float32))
+criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.001)
 
 num_epochs = 86

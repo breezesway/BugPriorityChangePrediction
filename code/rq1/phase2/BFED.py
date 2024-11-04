@@ -46,9 +46,6 @@ def custom_sampling(df):
 
 X_resampled, y_resampled = custom_sampling(df)
 
-class_weights = 1.0 / (y_resampled.value_counts(normalize=True) * len(y_resampled.unique()))
-class_weights = class_weights.sort_index().values
-
 tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 model = RobertaModel.from_pretrained('roberta-base')
 
@@ -109,7 +106,7 @@ class Net(nn.Module):
 
 input_dim = final_features.shape[1]
 net = Net(input_dim)
-criterion = nn.CrossEntropyLoss(weight=torch.tensor(class_weights, dtype=torch.float32))
+criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.001)
 
 num_epochs = 86

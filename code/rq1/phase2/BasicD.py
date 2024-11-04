@@ -17,6 +17,13 @@ columns_to_drop = ['key', 'curTime', 'Project', 'Rel_Labels',
                    'Rel_Attachments', 'Rep', 'Agn']
 df.drop(columns=columns_to_drop, axis=1, inplace=True)
 
+bug_fixing_features = ['Proj_Rep','Proj_Resolve'
+                       'Rep_PAve','Rep_PMed','Rep_Inc','Rep_Range',
+                       'Cmt_NumDiff','Cmt_PersNumDiff','Cmt_LenDiff',
+                       'His_NumDiff','His_PersNumDiff','His_FieldDiff'
+                       ]
+df.drop(columns=bug_fixing_features, axis=1, inplace=True)
+
 
 def custom_sampling(df):
     smote = SMOTE(sampling_strategy={1: int(len(df[df['curPriority'] == 'Minor']) * 1.65),
@@ -45,9 +52,6 @@ def custom_sampling(df):
 
 
 X_resampled, y_resampled = custom_sampling(df)
-
-class_weights = 1.0 / (y_resampled.value_counts(normalize=True) * len(y_resampled.unique()))
-class_weights = class_weights.sort_index().values
 
 tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 model = RobertaModel.from_pretrained('roberta-base')
@@ -109,7 +113,7 @@ class Net(nn.Module):
 
 input_dim = final_features.shape[1]
 net = Net(input_dim)
-criterion = nn.CrossEntropyLoss(weight=torch.tensor(class_weights, dtype=torch.float32))
+criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.001)
 
 num_epochs = 86

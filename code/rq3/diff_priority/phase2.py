@@ -134,9 +134,9 @@ def evaluate(model, dataloader):
             all_labels.extend(labels.numpy())
     return all_preds, all_labels
 
-
 preds, labels = evaluate(net, test_loader)
-f1_weighted = f1_score(labels, preds, average='weighted')
-f1_macro = f1_score(labels, preds, average='macro')
-print(f'F1-weighted score: {f1_weighted}')
-print(f'F1-macro score: {f1_macro}')
+
+f1_scores = f1_score(labels, preds, average=None)
+
+for label_idx, score in enumerate(f1_scores):
+    print(f'F1 score for class {label_idx}: {score}')
