@@ -1,5 +1,6 @@
 The table below displays the information of the 32 projects we have selected.
 
+
 | Project        | Age(y) | Language                      | Domain                                   | #Revision | #Committer | #Bug in JIRA | #Bug with priority changes |
 |----------------|--------|-------------------------------|------------------------------------------|-----------|------------|--------------|----------------------------|
 | ActiveMQ       | 17     | Java                          | Message Middleware                       | 10,728    | 166        | 5,058        | 216                        |

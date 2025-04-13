@@ -10,7 +10,7 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 from imblearn.under_sampling import EditedNearestNeighbours
 
-data = pd.read_excel(r'phase1.xlsx')
+data = pd.read_excel(r'phase_1.xlsx')
 
 numeric_features = data[['Proj_Id', 'Proj_Open', 'CurPriority', 'Sum_Len', 'Desc_Len',
                          'Rel_Num', 'Rel_PCNum', 'Rel_PCPercent', 'Rel_PAve', 'Rel_PMed',
@@ -23,7 +23,6 @@ numeric_features_resampled, labels_resampled = enn.fit_resample(numeric_features
 
 tokenizer = AutoTokenizer.from_pretrained('roberta-base')
 model = AutoModel.from_pretrained('roberta-base')
-
 
 def get_roberta_features(texts):
     inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt", max_length=512)

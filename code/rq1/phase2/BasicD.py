@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.optim as optim
 from sklearn.metrics import f1_score
 
-df = pd.read_excel('phase2.xlsx')
+df = pd.read_excel('phase_2.xlsx')
 
 columns_to_drop = ['key', 'curTime', 'Project', 'Rel_Labels',
                    'Rel_Versions', 'Rel_FixVersions', 'Rel_Components',

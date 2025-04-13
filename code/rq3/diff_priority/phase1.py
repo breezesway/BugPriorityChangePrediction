@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from transformers import AutoTokenizer, AutoModel
 import torch
 
-data = pd.read_excel(r'phase1.xlsx')
+data = pd.read_excel(r'phase_1.xlsx')
 
 numeric_features = data[['Proj_Id', 'Proj_Open', 'CurPriority', 'Sum_Len', 'Desc_Len',
                          'Rel_Num', 'Rel_PCNum', 'Rel_PCPercent', 'Rel_PAve', 'Rel_PMed',
