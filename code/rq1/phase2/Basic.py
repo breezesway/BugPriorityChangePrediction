@@ -33,7 +33,7 @@ def get_roberta_features(texts):
     inputs = tokenizer(texts, padding=True, truncation=True, max_length=512, return_tensors='pt')
     with torch.no_grad():
         outputs = model(**inputs)
-    return outputs.last_hidden_state[:, 0, :].numpy()  # 取<s>位置的特征向量
+    return outputs.last_hidden_state[:, 0, :].numpy()  # Get feature vector at <s> position
 
 
 X_resampled['combined_text'] = X_resampled['Sum_Content'] + ' ' + X_resampled['Cmt_Content']

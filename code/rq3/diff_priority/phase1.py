@@ -40,7 +40,7 @@ def get_roberta_features(texts):
     inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt", max_length=512)
     with torch.no_grad():
         outputs = model(**inputs)
-    # 获取<s>位置的特征向量
+    # Get feature vector at <s> position
     return outputs.last_hidden_state[:, 0, :].numpy()
 
 
@@ -81,7 +81,7 @@ test_data.columns = ['Proj_Id', 'Proj_Open', 'CurPriority', 'Sum_Len', 'Desc_Len
                  'Rel_Num', 'Rel_PCNum', 'Rel_PCPercent', 'Rel_PAve', 'Rel_PMed',
                  'Rep_Num', 'Rep_PCNum', 'Rep_PCPercent', 'Rep_PAve', 'Rep_PMed', 'Changed']
 
-# 对测试数据进行预测
+# Predict on test data
 CurPrioritys = test_data['CurPriority'].unique()
 
 for pri in CurPrioritys:

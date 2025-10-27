@@ -22,7 +22,7 @@ def get_roberta_features(texts):
     inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt", max_length=512)
     with torch.no_grad():
         outputs = model(**inputs)
-    # 获取<s>位置的特征向量
+    # Get feature vector at <s> position
     return outputs.last_hidden_state[:, 0, :].numpy()
 
 
