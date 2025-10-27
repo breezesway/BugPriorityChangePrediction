@@ -14,7 +14,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Load data
-df = pd.read_excel('../../data/phase_2.xlsx')
+df = pd.read_excel('../../data/phase_2.csv')
 
 # Drop unnecessary columns
 columns_to_drop = ['key', 'curTime', 'Project', 'Rel_Labels',

@@ -86,5 +86,5 @@ def create_and_evaluate_heuristic_baseline_phase2(filepath, random_seed=42):
 # --- Usage example ---
 if __name__ == "__main__":
     # Please replace the filename with your actual filename
-    file_path_phase2 = "phase_2_modified.xlsx"
+    file_path_phase2 = "phase_2.csv"
     create_and_evaluate_heuristic_baseline_phase2(file_path_phase2, random_seed=42)

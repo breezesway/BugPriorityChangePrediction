@@ -1,0 +1,33 @@
+Project,Age(y),Language,Domain,#Revision,#Committer,#Bug in JIRA,#Bug with priority changes,PriorityChangeProb,Group,Precision,Recall,F1-score,F1-weighted,F1-macro
+ActiveMQ,17,Java,Message Middleware,10728,166,5058,216,0.043,Message and Queue Systems,0.7212,0.6579,0.6881,0.7417,0.6182
+Ambari,11,"Java, JavaScript, Python",Hadoop Clusters Administration Tool,24110,236,17961,307,0.017,Cluster and Resource Management,0.3902,0.3669,0.3782,0.6518,0.5467
+Arrow,8,"C++, Java, Go, Python",Columnar Memory Format,12327,948,5576,290,0.052,Data Processing and Storage,0.6368,0.5827,0.6085,0.6509,0.5538
+Axis2,18,"Java, C, C++",Web Service Container,14030,87,4558,425,0.093,Web Services and RPC,0.7508,0.8682,0.8052,0.6621,0.5619
+Camel,16,Java,Integration Framework,55632,1100,5758,807,0.14,Message and Queue Systems,0.8318,0.9244,0.8756,0.7566,0.6384
+CloudStack,12,"Java, Python",Infrastructure-as-a-Service Platform,32759,608,7861,870,0.111,Cloud and Virtualization,0.669,0.7729,0.7172,0.7318,0.6283
+Cordova,14,"JavaScript, Java, Objective-C",Mobile App Development Platform,33010,1223,8780,813,0.093,Development Tools and Frameworks,0.7495,0.9275,0.8291,0.7411,0.6129
+Drill,10,Java,SQL Query Engine,4313,218,5437,579,0.106,Query Engines,0.7484,0.8444,0.7935,0.7462,0.6087
+Flink,12,"Java, Scala",Distributed Processing Engine,31286,1598,11003,2049,0.186,Stream Processing,0.779,0.9092,0.8391,0.7896,0.7137
+Geode,12,Java,Data Management Platform,10803,204,5429,150,0.028,Data Processing and Storage,0.8463,0.4266,0.5673,0.6237,0.5127
+Groovy,19,"Java, Groovy",Dynamic Language,18983,440,6921,352,0.051,Development Tools and Frameworks,0.7666,0.7745,0.7705,0.7214,0.6121
+Guacamole,12,"C, Java, JavaScript",Clientless Remote Desktop Gateway,8069,141,856,209,0.244,System and Infrastructure,0.8813,0.9808,0.9284,0.7693,0.6502
+Hadoop,13,Java,Distributed Processing Framework,25738,645,23798,2244,0.094,Big Data Frameworks,0.8103,0.9162,0.86,0.7361,0.6112
+HBase,16,Java,Distributed Database,19428,600,12227,1142,0.093,Data Processing and Storage,0.7392,0.7943,0.7658,0.6989,0.5887
+Hive,14,Java,Data Warehouse,16040,487,14306,509,0.036,Query Engines,0.6412,0.465,0.5391,0.6473,0.5394
+Hudi,6,"Java, Scala",Data Lake,3314,381,1177,184,0.156,Data Processing and Storage,0.7776,0.8632,0.8182,0.6501,0.5713
+Ignite,9,"Java, C#, C++",Distributed In-Memory Computing Platform,22146,456,7242,582,0.08,Data Processing and Storage,0.7219,0.6999,0.7107,0.7417,0.6182
+Impala,11,"C++, Java, Python",Distributed SQL Query Engine,10379,243,6238,1431,0.229,Query Engines,0.7842,0.7879,0.786,0.6518,0.5467
+Jackrabbit-Oak,11,Java,Hierarchical Content Repository,17839,77,3726,168,0.045,Data Processing and Storage,0.7732,0.713,0.7419,0.6509,0.5538
+Kafka,11,"Java, Scala",Streaming Message Middleware,10361,1116,6808,617,0.091,Stream Processing,0.6632,0.7812,0.7174,0.6621,0.5619
+Lucene,21,Java,Full-text Search Library,35469,386,4201,201,0.048,Search Engines,0.7131,0.6969,0.7049,0.7566,0.6384
+Mesos,12,C++,Cluster Manager,18175,388,4922,427,0.087,Cluster and Resource Management,0.7006,0.7887,0.742,0.7318,0.6283
+NetBeans,9,Java,Integrated Development Environment,5320,235,4740,314,0.066,Development Tools and Frameworks,0.6554,0.7064,0.6799,0.7411,0.6129
+NiFi,8,Java,Processing Engine,7303,570,4427,221,0.05,Data Processing and Storage,0.6757,0.6067,0.6393,0.7462,0.6087
+OFBiz,16,"Java, JavaScript",Java Web Framework,32911,89,4740,215,0.045,Development Tools and Frameworks,0.7041,0.7251,0.7144,0.7896,0.7137
+Ozone,5,Java,Distributed Key-Value Store,4830,193,2471,194,0.079,Data Processing and Storage,0.6863,0.7771,0.7288,0.6237,0.5127
+Qpid,16,"Java, C++",Message Queue,45216,121,5097,214,0.042,Message and Queue Systems,0.7175,0.6066,0.6574,0.7214,0.6121
+Solr,21,Java,Enterprise Search Platform,32002,228,7209,377,0.052,Search Engines,0.6844,0.6192,0.6502,0.7693,0.6502
+Spark,13,"Scala, Python, Java",Distributed Processing Engine,32561,2572,15508,1773,0.114,Stream Processing,0.7221,0.7784,0.7492,0.7361,0.6112
+Thrift,16,"C++, Java, C",Cross-Language Services Development,6553,562,3058,183,0.06,Web Services and RPC,0.7173,0.8824,0.7913,0.6989,0.5887
+Traffic Server,13,"C++, Python, C",Caching Proxy Server,13643,381,3026,165,0.055,System and Infrastructure,0.7013,0.7163,0.7087,0.6473,0.5394
+Wicket,18,Java,Java Web Framework,21108,142,4193,212,0.051,Development Tools and Frameworks,0.7845,0.843,0.8127,0.6501,0.5713
